@@ -1,0 +1,4 @@
+/vendor/
+build/*
+tests/phpunit/output/*
+!tests/phpunit/output/.gitkeep
