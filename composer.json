@@ -1,0 +1,26 @@
+{
+    "name": "slimphp-api/slim-acl",
+    "description": "A middleware module for Slim3 to provide ACL using ZF2's Zend\\Permissions\\Acl",
+    "require": {
+        "php": ">5.6",
+        "zendframework/zend-permissions-acl": "2.4.*"
+    },
+    "require-dev": {
+        "slim/slim": "3.*@dev",
+        "phpunit/phpunit": "4.*",
+        "satooshi/php-coveralls": "^0.7.0@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel Baker",
+            "email": "me@g403.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"SlimApi\\Acl\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"SlimApi\\AclTest\\": "tests/phpunit/"}
+    }
+}
