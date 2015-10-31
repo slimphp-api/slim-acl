@@ -39,14 +39,7 @@ class GuardTest extends \PHPUnit_Framework_TestCase
 
     public function testGuestSuccess()
     {
-        // Request
-        $uri = Uri::createFromString('https://example.com:443/bar');
-        $headers = new Headers();
-        $cookies = [];
-        $serverParams = [];
-        $body = new Body(fopen('php://temp', 'r+'));
-        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
-        $request = $request->withAttribute('route', new Route(['get'], '/bar', 'CallableFunction'));
+        $request = $this->requestFactory('bar');
 
         // Response
         $response = new Response();
@@ -63,14 +56,7 @@ class GuardTest extends \PHPUnit_Framework_TestCase
 
     public function testGuestNotAllowedByRoute()
     {
-        // Request
-        $uri = Uri::createFromString('https://example.com:443/foo');
-        $headers = new Headers();
-        $cookies = [];
-        $serverParams = [];
-        $body = new Body(fopen('php://temp', 'r+'));
-        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
-        $request = $request->withAttribute('route', new Route(['get'], '/foo', 'CallableFunction'));
+        $request = $this->requestFactory('foo');
 
         // Response
         $response = new Response();
@@ -86,14 +72,7 @@ class GuardTest extends \PHPUnit_Framework_TestCase
 
     public function testGuestNotAllowedByCallable()
     {
-        // Request
-        $uri = Uri::createFromString('https://example.com:443/foo');
-        $headers = new Headers();
-        $cookies = [];
-        $serverParams = [];
-        $body = new Body(fopen('php://temp', 'r+'));
-        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
-        $request = $request->withAttribute('route', new Route(['get'], '/foo', 'CallableFunction'));
+        $request = $this->requestFactory('foo');
 
         // Response
         $response = new Response();
@@ -109,14 +88,7 @@ class GuardTest extends \PHPUnit_Framework_TestCase
 
     public function testGuestNotAllowedByDefaultCallable()
     {
-        // Request
-        $uri = Uri::createFromString('https://example.com:443/foo');
-        $headers = new Headers();
-        $cookies = [];
-        $serverParams = [];
-        $body = new Body(fopen('php://temp', 'r+'));
-        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
-        $request = $request->withAttribute('route', new Route(['get'], '/foo', 'CallableFunction'));
+        $request = $this->requestFactory('foo');
 
         // Response
         $response = new Response();
@@ -128,5 +100,18 @@ class GuardTest extends \PHPUnit_Framework_TestCase
         };
         $newResponse = $guard($request, $response, $next);
         $this->assertEquals(403, $newResponse->getStatusCode());
+    }
+
+    private function requestFactory($endpoint)
+    {
+        // Request
+        $uri = Uri::createFromString('https://example.com:443/'.$endpoint);
+        $headers = new Headers();
+        $cookies = [];
+        $serverParams = [];
+        $body = new Body(fopen('php://temp', 'r+'));
+        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
+        $request = $request->withAttribute('route', new Route(['get'], '/'.$endpoint, 'CallableFunction'));
+        return $request;
     }
 }
