@@ -62,3 +62,13 @@ Configuration passed into the middleware constructor should look like:
     ]
 ]
 ```
+
+**Important:** The route should be determined before the app middlewares are being fired by:
+
+```
+$app = new Slim\App([
+    'settings'  => [
+        'determineRouteBeforeAppMiddleware' => true,
+    ]
+]);
+```
