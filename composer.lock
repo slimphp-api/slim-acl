@@ -4,30 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f43354e7c07d8ee1e0914bb5d8699ec7",
-    "content-hash": "c437b533cd1a5b936d23ea883bb9eb2d",
+    "hash": "808ba1de8025f2795e0391485bab3a97",
+    "content-hash": "7ed50c065dc19493032bec08d80d29af",
     "packages": [
         {
             "name": "zendframework/zend-permissions-acl",
-            "version": "2.4.9",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-permissions-acl.git",
-                "reference": "695abe7902a1668a655569d94b1caf9393918547"
+                "reference": "843bbd9c6f6d20b84dd0ce6c815d10397e98082b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-permissions-acl/zipball/695abe7902a1668a655569d94b1caf9393918547",
-                "reference": "695abe7902a1668a655569d94b1caf9393918547",
+                "url": "https://api.github.com/repos/zendframework/zend-permissions-acl/zipball/843bbd9c6f6d20b84dd0ce6c815d10397e98082b",
+                "reference": "843bbd9c6f6d20b84dd0ce6c815d10397e98082b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.23"
+                "php": "^5.5 || ^7.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "~4.0",
-                "satooshi/php-coveralls": "dev-master"
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3"
             },
             "suggest": {
                 "zendframework/zend-servicemanager": "To support Zend\\Permissions\\Acl\\Assertion\\AssertionManager plugin manager usage"
@@ -35,8 +35,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev",
-                    "dev-develop": "2.5-dev"
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
                 }
             },
             "autoload": {
@@ -54,7 +54,7 @@
                 "acl",
                 "zf2"
             ],
-            "time": "2015-05-07 14:55:31"
+            "time": "2016-02-03 21:46:45"
         }
     ],
     "packages-dev": [
@@ -232,6 +232,7 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": "guzzlehttp/guzzle",
             "time": "2015-03-18 18:23:50"
         },
         {
@@ -1490,12 +1491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "40bae8658dbbb500ebc19aa9fde22dc4295fc290"
+                "reference": "99f93d6a4ff0c55184cfc925a4a41e9507aef690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/40bae8658dbbb500ebc19aa9fde22dc4295fc290",
-                "reference": "40bae8658dbbb500ebc19aa9fde22dc4295fc290",
+                "url": "https://api.github.com/repos/symfony/config/zipball/99f93d6a4ff0c55184cfc925a4a41e9507aef690",
+                "reference": "99f93d6a4ff0c55184cfc925a4a41e9507aef690",
                 "shasum": ""
             },
             "require": {
@@ -1814,12 +1815,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002"
+                "reference": "4113f97104ffdcb734e15c27fbe27a7e1a3ac3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002",
-                "reference": "177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/4113f97104ffdcb734e15c27fbe27a7e1a3ac3b0",
+                "reference": "4113f97104ffdcb734e15c27fbe27a7e1a3ac3b0",
                 "shasum": ""
             },
             "require": {
@@ -1866,7 +1867,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">5.6"
+        "php": "^5.6 || ^7.0"
     },
     "platform-dev": []
 }
