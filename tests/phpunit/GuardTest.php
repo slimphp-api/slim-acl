@@ -102,6 +102,39 @@ class GuardTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(403, $newResponse->getStatusCode());
     }
 
+    public function testGuestSuccessByClosure()
+    {
+        $request = $this->requestFactoryClosure('bar');
+
+        // Response
+        $response = new Response();
+
+        $guard = new Guard($this->acl, 'guest');
+
+        $next = function ($req, $res) {
+            return $res;
+        };
+        $newResponse = $guard($request, $response, $next);
+        echo $newResponse->getBody();
+        $this->assertEquals(200, $newResponse->getStatusCode());
+    }
+
+    public function testGuestNotAllowedByClosure()
+    {
+        $request = $this->requestFactoryClosure('foo');
+
+        // Response
+        $response = new Response();
+
+        $guard = new Guard($this->acl, 'guest');
+
+        $next = function ($req, $res) {
+            return $res;
+        };
+        $newResponse = $guard($request, $response, $next);
+        $this->assertEquals(403, $newResponse->getStatusCode());
+    }
+
     private function requestFactory($endpoint)
     {
         // Request
@@ -112,6 +145,22 @@ class GuardTest extends \PHPUnit_Framework_TestCase
         $body = new Body(fopen('php://temp', 'r+'));
         $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
         $request = $request->withAttribute('route', new Route(['get'], '/'.$endpoint, 'CallableFunction'));
+        return $request;
+    }
+
+    private function requestFactoryClosure($endpoint)
+    {
+        // Request
+        $uri = Uri::createFromString('https://example.com:443/'.$endpoint);
+        $headers = new Headers();
+        $cookies = [];
+        $serverParams = [];
+        $body = new Body(fopen('php://temp', 'r+'));
+        $request = new Request('GET', $uri, $headers, $cookies, $serverParams, $body);
+        $closure = function($req, $res) {
+            return $res;
+        };
+        $request = $request->withAttribute('route', new Route(['get'], '/'.$endpoint, $closure));
         return $request;
     }
 }
